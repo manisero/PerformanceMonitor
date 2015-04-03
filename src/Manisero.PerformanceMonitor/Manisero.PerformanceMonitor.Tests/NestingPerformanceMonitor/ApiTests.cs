@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Manisero.PerformanceMonitor.Tests.NestingPerformanceMonitor
 {
-	public class NestingPerformanceMonitorTests
+	public class ApiTests
 	{
 		[Test]
 		public void result_contains_started_task()

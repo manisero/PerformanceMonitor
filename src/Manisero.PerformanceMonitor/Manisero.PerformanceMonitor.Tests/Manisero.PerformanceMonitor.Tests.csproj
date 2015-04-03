@@ -45,7 +45,7 @@
     <Compile Include="FlatPerformanceMonitor\ApiTests.cs" />
     <Compile Include="FlatPerformanceMonitor\MeasurementTests.cs" />
     <Compile Include="FlatPerformanceMonitor\ReportFormattingTests.cs" />
-    <Compile Include="NestingPerformanceMonitor\NestingPerformanceMonitorTests.cs" />
+    <Compile Include="NestingPerformanceMonitor\ApiTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
