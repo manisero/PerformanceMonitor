@@ -50,7 +50,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PerformanceMonitorTests.cs" />
+    <Compile Include="MeasurementTests.cs" />
+    <Compile Include="ApiTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
