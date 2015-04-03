@@ -53,6 +53,7 @@
     <Compile Include="MeasurementTests.cs" />
     <Compile Include="ApiTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportFormattingTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
