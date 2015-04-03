@@ -34,7 +34,7 @@ namespace Manisero.PerformanceMonitor.Tests
 
 			// Assert
 			var results = monitor.GetResults();
-			Assert.That(results[task].Milliseconds, Is.InRange(18, 22));
+			Assert.That(results[task].TotalMilliseconds, Is.InRange(18, 22));
 		}
 
 		[Test]
@@ -52,7 +52,7 @@ namespace Manisero.PerformanceMonitor.Tests
 
 			// Assert
 			var results = monitor.GetResults();
-			Assert.That(results[task].Milliseconds, Is.InRange(18, 22));
+			Assert.That(results[task].TotalMilliseconds, Is.InRange(18, 22));
 		}
 
 		[Test]
@@ -76,7 +76,7 @@ namespace Manisero.PerformanceMonitor.Tests
 
 			// Assert
 			var results = monitor.GetResults();
-			Assert.That(results[task].Milliseconds, Is.InRange(38, 42));
+			Assert.That(results[task].TotalMilliseconds, Is.InRange(38, 42));
 		}
 	}
 }
