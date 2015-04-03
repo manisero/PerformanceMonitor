@@ -6,7 +6,7 @@ namespace Manisero.PerformanceMonitor.Tests.FlatPerformanceMonitor
 	public class ApiTests
     {
 		[Test]
-		public void results_contain_started_task()
+		public void result_contains_started_task()
 		{
 			// Arrange
 			var monitor = new FlatPerformanceMonitor<int>();
@@ -14,15 +14,15 @@ namespace Manisero.PerformanceMonitor.Tests.FlatPerformanceMonitor
 
 			// Act
 			monitor.StartTask(task);
-			var results = monitor.GetResult();
+			var result = monitor.GetResult();
 
 			// Assert
-			Assert.AreEqual(1, results.Count);
-			Assert.True(results.ContainsKey(task));
+			Assert.AreEqual(1, result.Count);
+			Assert.True(result.ContainsKey(task));
 		}
 
 		[Test]
-		public void results_contain_started_tasks()
+		public void result_contain_started_tasks()
 		{
 			// Arrange
 			var monitor = new FlatPerformanceMonitor<int>();
@@ -34,14 +34,14 @@ namespace Manisero.PerformanceMonitor.Tests.FlatPerformanceMonitor
 				monitor.StartTask(task);
 			}
 			
-			var results = monitor.GetResult();
+			var result = monitor.GetResult();
 
 			// Assert
-			Assert.AreEqual(3, results.Count);
+			Assert.AreEqual(3, result.Count);
 
 			foreach (var task in tasks)
 			{
-				Assert.True(results.ContainsKey(task));
+				Assert.True(result.ContainsKey(task));
 			}
 		}
 
