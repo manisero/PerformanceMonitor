@@ -8,6 +8,7 @@ namespace Manisero.PerformanceMonitor._Impl
 	public class FlatPerformanceMonitor<TTask> : IPerformanceMonitor<TTask>
 	{
 	    private readonly IDictionary<TTask, Stopwatch> _tasks = new Dictionary<TTask, Stopwatch>();
+		private readonly List<TTask> _runningTasks = new List<TTask>();
 
 		public void StartTask(TTask task)
 		{
@@ -19,17 +20,36 @@ namespace Manisero.PerformanceMonitor._Impl
 				_tasks.Add(task, stopwatch);
 			}
 
-			stopwatch.Start();
+			if (!stopwatch.IsRunning)
+			{
+				_runningTasks.Add(task);
+				stopwatch.Start();
+			}
 		}
 
 		public void StopCurrentTask()
 		{
-			throw new NotImplementedException();
+			if (_runningTasks.Count == 0)
+			{
+				throw new InvalidOperationException("No task is running");
+			}
+
+			var taskIndex = _runningTasks.Count - 1;
+			var task = _runningTasks[taskIndex];
+
+			_tasks[task].Stop();
+			_runningTasks.RemoveAt(taskIndex);
 		}
 
 		public void StopTask(TTask task)
 		{
-			_tasks[task].Stop();
+			var stopwatch = _tasks[task];
+			
+			if (stopwatch.IsRunning)
+			{
+				stopwatch.Stop();
+				_runningTasks.Remove(task);
+			}
 		}
 
 		public TasksDurations<TTask> GetResult()
