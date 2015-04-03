@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 
 namespace Manisero.PerformanceMonitor._Impl
 {
@@ -60,16 +59,16 @@ namespace Manisero.PerformanceMonitor._Impl
 
 		public TasksDurations<TTask> GetResult()
 		{
-			return _tasks.Values.ToTasksDurations(x => x.Task, MapToTaskInfo);
+			return _tasks.Values.ToTasksDurations(x => x.Task, MapToTaskDuration);
 		}
 
-		private TaskInfo<TTask> MapToTaskInfo(TaskData taskData)
+		private TaskDuration<TTask> MapToTaskDuration(TaskData taskData)
 		{
-			return new TaskInfo<TTask>
+			return new TaskDuration<TTask>
 				{
 					Duration = taskData.Stopwatch.Elapsed,
 					SubtasksDurations = taskData.Subtasks != null
-											? taskData.Subtasks.ToTasksDurations(x => x.Key, x => MapToTaskInfo(x.Value))
+											? taskData.Subtasks.ToTasksDurations(x => x.Key, x => MapToTaskDuration(x.Value))
 											: null
 				};
 		}

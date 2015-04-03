@@ -30,7 +30,7 @@ namespace Manisero.PerformanceMonitor._Impl
 		public TasksDurations<TTask> GetResult()
 		{
 			return _tasks.ToTasksDurations(x => x.Key,
-										   x => new TaskInfo<TTask>
+										   x => new TaskDuration<TTask>
 											   {
 												   Duration = x.Value.Elapsed
 											   });

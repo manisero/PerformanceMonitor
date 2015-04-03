@@ -2,7 +2,7 @@
 
 namespace Manisero.PerformanceMonitor
 {
-	public class TaskInfo<TTask>
+	public class TaskDuration<TTask>
 	{
 		public TimeSpan Duration { get; set; }
 

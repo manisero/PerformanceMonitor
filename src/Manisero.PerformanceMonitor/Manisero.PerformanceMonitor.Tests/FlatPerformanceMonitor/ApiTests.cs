@@ -22,7 +22,7 @@ namespace Manisero.PerformanceMonitor.Tests.FlatPerformanceMonitor
 		}
 
 		[Test]
-		public void result_contain_started_tasks()
+		public void result_contains_started_tasks()
 		{
 			// Arrange
 			var monitor = new FlatPerformanceMonitor<int>();
