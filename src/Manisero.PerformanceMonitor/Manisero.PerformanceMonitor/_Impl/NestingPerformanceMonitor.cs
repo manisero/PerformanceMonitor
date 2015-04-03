@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Manisero.PerformanceMonitor._Impl
 {
@@ -67,7 +68,7 @@ namespace Manisero.PerformanceMonitor._Impl
 			return new TaskDuration<TTask>
 				{
 					Duration = taskData.Stopwatch.Elapsed,
-					SubtasksDurations = taskData.Subtasks != null
+					SubtasksDurations = taskData.Subtasks.Any()
 											? taskData.Subtasks.ToTasksDurations(x => x.Key, x => MapToTaskDuration(x.Value))
 											: null
 				};
