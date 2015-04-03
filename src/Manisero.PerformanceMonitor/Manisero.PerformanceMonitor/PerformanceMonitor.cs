@@ -7,6 +7,11 @@ namespace Manisero.PerformanceMonitor
 	{
 		public static IPerformanceMonitor<TTask> Current { get; set; }
 
+		static PerformanceMonitor()
+		{
+			SetCurrentMonitor(BuiltInMonitorType.Nested);
+		}
+
 		public static void SetCurrentMonitor<TMonitor>()
 			where TMonitor : IPerformanceMonitor<TTask>
 		{
