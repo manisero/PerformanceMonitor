@@ -6,6 +6,8 @@ namespace Manisero.PerformanceMonitor
 	{
 		void StartTask(TTask task);
 
+		void StopCurrentTask();
+
 		void StopTask(TTask task);
 
 		TasksDurations<TTask> GetResult();

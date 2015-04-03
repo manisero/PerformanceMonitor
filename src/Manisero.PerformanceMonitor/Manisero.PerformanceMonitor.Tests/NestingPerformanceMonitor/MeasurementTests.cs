@@ -92,6 +92,33 @@ namespace Manisero.PerformanceMonitor.Tests.NestingPerformanceMonitor
 		}
 
 		[Test]
+		public void result_for_task_with_subtask_stopped_by_StopCurrentTask_is_correct()
+		{
+			// Arrange
+			var monitor = new NestingPerformanceMonitor<int>();
+			var task = 1;
+			var subtask = 2;
+
+			// Act
+			monitor.StartTask(task);
+			Thread.Sleep(10);
+
+			monitor.StartTask(subtask);
+			Thread.Sleep(20);
+			monitor.StopCurrentTask();
+
+			Thread.Sleep(10);
+			monitor.StopCurrentTask();
+
+			Thread.Sleep(10);
+
+			// Assert
+			var result = monitor.GetResult();
+			Assert.That(result[task].Duration.TotalMilliseconds, Is.InRange(38, 44));
+			Assert.That(result[task].SubtasksDurations[subtask].Duration.TotalMilliseconds, Is.InRange(18, 24));
+		}
+
+		[Test]
 		public void result_for_task_with_two_subtasks_is_correct()
 		{
 			// Arrange

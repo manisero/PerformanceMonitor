@@ -22,6 +22,11 @@ namespace Manisero.PerformanceMonitor._Impl
 			stopwatch.Start();
 		}
 
+		public void StopCurrentTask()
+		{
+			throw new NotImplementedException();
+		}
+
 		public void StopTask(TTask task)
 		{
 			_tasks[task].Stop();

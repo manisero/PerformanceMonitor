@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace Manisero.PerformanceMonitor._Impl
 {
@@ -56,6 +55,17 @@ namespace Manisero.PerformanceMonitor._Impl
 			taskData.Stopwatch.Start();
 		}
 
+		public void StopCurrentTask()
+		{
+			if (_currentTask == null)
+			{
+				throw new InvalidOperationException("No task is running.");
+			}
+
+			_currentTask.Stopwatch.Stop();
+			_currentTask = _currentTask.Parent;
+		}
+
 		public void StopTask(TTask task)
 		{
 			if (_currentTask == null)
@@ -64,23 +74,12 @@ namespace Manisero.PerformanceMonitor._Impl
 			}
 			else if (_currentTask.Task.Equals(task))
 			{
-				StopTaskWithSubtasks(_currentTask);
-				_currentTask = _currentTask.Parent;
+				StopCurrentTask();
 			}
 			else
 			{
 				StopParentTask(task, _currentTask.Parent);
 			}
-		}
-
-		private void StopTaskWithSubtasks(TaskData taskData)
-		{
-			foreach (var subtask in taskData.Subtasks)
-			{
-				StopTaskWithSubtasks(subtask.Value);
-			}
-
-			taskData.Stopwatch.Stop();
 		}
 
 		private void StopParentTask(TTask task, TaskData parentTaskData)
@@ -93,13 +92,22 @@ namespace Manisero.PerformanceMonitor._Impl
 			if (parentTaskData.Task.Equals(task))
 			{
 				StopTaskWithSubtasks(parentTaskData);
-
 				_currentTask = parentTaskData.Parent;
 			}
 			else
 			{
 				StopParentTask(task, parentTaskData);
 			}
+		}
+
+		private void StopTaskWithSubtasks(TaskData taskData)
+		{
+			foreach (var subtask in taskData.Subtasks)
+			{
+				StopTaskWithSubtasks(subtask.Value);
+			}
+
+			taskData.Stopwatch.Stop();
 		}
 
 		public TasksDurations<TTask> GetResult()
