@@ -17,6 +17,13 @@ namespace Manisero.PerformanceMonitor
 		}
 	}
 
+	public class TaskDuration<TTask>
+	{
+		public TimeSpan Duration { get; set; }
+
+		public TasksDurations<TTask> SubtasksDurations { get; set; }
+	}
+
 	public static class TasksDurationsExtensions
 	{
 		public static TasksDurations<TTask> ToTasksDurations<TTask>(this IDictionary<TTask, TaskDuration<TTask>> dictionary)

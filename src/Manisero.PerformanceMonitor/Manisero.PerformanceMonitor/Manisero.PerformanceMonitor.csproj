@@ -42,7 +42,6 @@
     <Compile Include="IPerformanceMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TasksDurations.cs" />
-    <Compile Include="TaskDuration.cs" />
     <Compile Include="Util\ReportFormatter.cs" />
     <Compile Include="_Impl\FlatPerformanceMonitor.cs" />
     <Compile Include="_Impl\NestingPerformanceMonitor.cs" />
