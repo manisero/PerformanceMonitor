@@ -48,6 +48,7 @@
     <Compile Include="NestingPerformanceMonitor\MeasurementTests.cs" />
     <Compile Include="NestingPerformanceMonitor\Api\StartingTasksTests.cs" />
     <Compile Include="NestingPerformanceMonitor\Api\StoppingTasksTests.cs" />
+    <Compile Include="NestingPerformanceMonitor\ReportFormattingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
