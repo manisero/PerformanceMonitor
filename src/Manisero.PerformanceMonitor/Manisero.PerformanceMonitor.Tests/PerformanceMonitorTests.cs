@@ -5,15 +5,19 @@ namespace Manisero.PerformanceMonitor.Tests
     public class PerformanceMonitorTests
     {
 		[Fact]
-		public void Passing()
+		public void results_contain_started_task()
 		{
-			Assert.Equal(3, 3);
-		}
+			// Arrange
+			var monitor = new PerformanceMonitor<int>();
+			var task = 1;
 
-		[Fact]
-		public void Failing()
-		{
-			Assert.Equal(3, 5);
+			// Act
+			monitor.EnterTaskScope(task);
+			var results = monitor.GetResults();
+
+			// Assert
+			Assert.Equal(1, results.Count);
+			Assert.True(results.ContainsKey(task));
 		}
     }
 }

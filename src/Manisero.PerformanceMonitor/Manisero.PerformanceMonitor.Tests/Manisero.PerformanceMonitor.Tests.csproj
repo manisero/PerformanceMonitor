@@ -56,6 +56,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Manisero.PerformanceMonitor\Manisero.PerformanceMonitor.csproj">
+      <Project>{f2dc80cd-267e-4af8-a568-e18fc776e3f9}</Project>
+      <Name>Manisero.PerformanceMonitor</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
