@@ -14,7 +14,7 @@ namespace Manisero.PerformanceMonitor._Impl
 			throw new NotImplementedException();
 		}
 
-		public TasksDurations<TTask> GetResults()
+		public TasksDurations<TTask> GetResult()
 		{
 			throw new NotImplementedException();
 		}

@@ -8,7 +8,7 @@ namespace Manisero.PerformanceMonitor
 
 		void StopTask(TTask task);
 
-		TasksDurations<TTask> GetResults();
+		TasksDurations<TTask> GetResult();
 
 		string GetReport(bool includeHeader = true, Func<TTask, string> taskNameFormatter = null, Func<TimeSpan, string> taskDurationFormatter = null);
 	}

@@ -14,7 +14,7 @@ namespace Manisero.PerformanceMonitor.Tests.FlatPerformanceMonitor
 
 			// Act
 			monitor.StartTask(task);
-			var results = monitor.GetResults();
+			var results = monitor.GetResult();
 
 			// Assert
 			Assert.AreEqual(1, results.Count);
@@ -34,7 +34,7 @@ namespace Manisero.PerformanceMonitor.Tests.FlatPerformanceMonitor
 				monitor.StartTask(task);
 			}
 			
-			var results = monitor.GetResults();
+			var results = monitor.GetResult();
 
 			// Assert
 			Assert.AreEqual(3, results.Count);

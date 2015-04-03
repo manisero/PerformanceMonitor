@@ -27,7 +27,7 @@ namespace Manisero.PerformanceMonitor._Impl
 			_tasks[task].Stop();
 		}
 
-		public TasksDurations<TTask> GetResults()
+		public TasksDurations<TTask> GetResult()
 		{
 			var taskInfos = _tasks.ToDictionary(x => x.Key,
 												x => new TaskInfo<TTask>
@@ -50,7 +50,7 @@ namespace Manisero.PerformanceMonitor._Impl
 				taskDurationFormatter = x => x.TotalMilliseconds.ToString();
 			}
 
-			var report = GetResults().Select(x => string.Format("{0}: {1}",
+			var report = GetResult().Select(x => string.Format("{0}: {1}",
 																taskNameFormatter(x.Key),
 																taskDurationFormatter(x.Value.Duration)))
 									 .ToList();
