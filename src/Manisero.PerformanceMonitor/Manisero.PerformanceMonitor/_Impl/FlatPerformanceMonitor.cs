@@ -27,9 +27,15 @@ namespace Manisero.PerformanceMonitor._Impl
 			_tasks[task].Stop();
 		}
 
-		public IDictionary<TTask, TimeSpan> GetResults()
+		public TasksDurations<TTask> GetResults()
 		{
-			return _tasks.ToDictionary(x => x.Key, x => x.Value.Elapsed);
+			var taskInfos = _tasks.ToDictionary(x => x.Key,
+												x => new TaskInfo<TTask>
+													{
+														Duration = x.Value.Elapsed
+													});
+
+			return new TasksDurations<TTask>(taskInfos);
 		}
 
 		public string GetReport(bool includeHeader = true, Func<TTask, string> taskNameFormatter = null, Func<TimeSpan, string> taskDurationFormatter = null)
@@ -46,7 +52,7 @@ namespace Manisero.PerformanceMonitor._Impl
 
 			var report = GetResults().Select(x => string.Format("{0}: {1}",
 																taskNameFormatter(x.Key),
-																taskDurationFormatter(x.Value)))
+																taskDurationFormatter(x.Value.Duration)))
 									 .ToList();
 
 			if (includeHeader)

@@ -41,8 +41,10 @@
   <ItemGroup>
     <Compile Include="IPerformanceMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TasksDurations.cs" />
+    <Compile Include="TaskInfo.cs" />
     <Compile Include="_Impl\FlatPerformanceMonitor.cs" />
-    <Compile Include="_Impl\NestedPerformanceMonitor.cs" />
+    <Compile Include="_Impl\NestingPerformanceMonitor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

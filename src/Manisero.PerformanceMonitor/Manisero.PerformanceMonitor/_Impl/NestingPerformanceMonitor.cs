@@ -1,9 +1,8 @@
 using System;
-using System.Collections.Generic;
 
 namespace Manisero.PerformanceMonitor._Impl
 {
-	public class NestedPerformanceMonitor<TTask> : IPerformanceMonitor<TTask>
+	public class NestingPerformanceMonitor<TTask> : IPerformanceMonitor<TTask>
 	{
 		public void StartTask(TTask task)
 		{
@@ -15,7 +14,7 @@ namespace Manisero.PerformanceMonitor._Impl
 			throw new NotImplementedException();
 		}
 
-		public IDictionary<TTask, TimeSpan> GetResults()
+		public TasksDurations<TTask> GetResults()
 		{
 			throw new NotImplementedException();
 		}

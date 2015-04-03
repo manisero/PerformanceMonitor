@@ -19,7 +19,7 @@ namespace Manisero.PerformanceMonitor.Tests.FlatPerformanceMonitor
 
 			// Assert
 			var results = monitor.GetResults();
-			Assert.Greater(results[task].Ticks, 0);
+			Assert.Greater(results[task].Duration.Ticks, 0);
 		}
 
 		[Test]
@@ -35,7 +35,7 @@ namespace Manisero.PerformanceMonitor.Tests.FlatPerformanceMonitor
 
 			// Assert
 			var results = monitor.GetResults();
-			Assert.That(results[task].TotalMilliseconds, Is.InRange(18, 22));
+			Assert.That(results[task].Duration.TotalMilliseconds, Is.InRange(18, 22));
 		}
 
 		[Test]
@@ -53,7 +53,7 @@ namespace Manisero.PerformanceMonitor.Tests.FlatPerformanceMonitor
 
 			// Assert
 			var results = monitor.GetResults();
-			Assert.That(results[task].TotalMilliseconds, Is.InRange(18, 22));
+			Assert.That(results[task].Duration.TotalMilliseconds, Is.InRange(18, 22));
 		}
 
 		[Test]
@@ -77,7 +77,7 @@ namespace Manisero.PerformanceMonitor.Tests.FlatPerformanceMonitor
 
 			// Assert
 			var results = monitor.GetResults();
-			Assert.That(results[task].TotalMilliseconds, Is.InRange(38, 42));
+			Assert.That(results[task].Duration.TotalMilliseconds, Is.InRange(38, 42));
 		}
 	}
 }
