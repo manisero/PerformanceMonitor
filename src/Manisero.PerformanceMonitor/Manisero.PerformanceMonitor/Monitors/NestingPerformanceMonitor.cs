@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Manisero.PerformanceMonitor._Impl
+namespace Manisero.PerformanceMonitor.Monitors
 {
 	public class NestingPerformanceMonitor<TTask> : IPerformanceMonitor<TTask>
 	{

@@ -1,4 +1,4 @@
-using Manisero.PerformanceMonitor._Impl;
+using Manisero.PerformanceMonitor.Monitors;
 using NUnit.Framework;
 
 namespace Manisero.PerformanceMonitor.Tests.NestingPerformanceMonitor.Api
