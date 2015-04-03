@@ -1,12 +1,10 @@
-﻿using System;
-using System.Diagnostics;
-using Xunit;
+﻿using NUnit.Framework;
 
 namespace Manisero.PerformanceMonitor.Tests
 {
 	public class ReportFormattingTests
 	{
-		[Fact]
+		[Test]
 		public void formats_default_report()
 		{
 			// Arrange

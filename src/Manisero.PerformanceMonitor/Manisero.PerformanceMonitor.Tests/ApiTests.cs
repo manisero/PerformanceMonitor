@@ -1,11 +1,10 @@
-﻿using System;
-using Xunit;
+﻿using NUnit.Framework;
 
 namespace Manisero.PerformanceMonitor.Tests
 {
 	public class ApiTests
     {
-		[Fact]
+		[Test]
 		public void results_contain_started_task()
 		{
 			// Arrange
@@ -17,11 +16,11 @@ namespace Manisero.PerformanceMonitor.Tests
 			var results = monitor.GetResults();
 
 			// Assert
-			Assert.Equal(1, results.Count);
+			Assert.AreEqual(1, results.Count);
 			Assert.True(results.ContainsKey(task));
 		}
 
-		[Fact]
+		[Test]
 		public void results_contain_started_tasks()
 		{
 			// Arrange
@@ -37,7 +36,7 @@ namespace Manisero.PerformanceMonitor.Tests
 			var results = monitor.GetResults();
 
 			// Assert
-			Assert.Equal(3, results.Count);
+			Assert.AreEqual(3, results.Count);
 
 			foreach (var task in tasks)
 			{
@@ -45,7 +44,7 @@ namespace Manisero.PerformanceMonitor.Tests
 			}
 		}
 
-		[Fact]
+		[Test]
 		public void can_start_same_task_twice()
 		{
 			// Arrange
@@ -59,7 +58,7 @@ namespace Manisero.PerformanceMonitor.Tests
 			monitor.StartTask(task);
 		}
 
-		[Fact]
+		[Test]
 		public void stopping_never_started_task_fails()
 		{
 			// Arrange
@@ -67,10 +66,10 @@ namespace Manisero.PerformanceMonitor.Tests
 			var task = 1;
 
 			// Assert
-			Assert.ThrowsAny<Exception>(() => monitor.StopTask(task));
+			Assert.Catch(() => monitor.StopTask(task));
 		}
 
-		[Fact]
+		[Test]
 		public void stopping_stopped_task_does_not_fail()
 		{
 			// Arrange

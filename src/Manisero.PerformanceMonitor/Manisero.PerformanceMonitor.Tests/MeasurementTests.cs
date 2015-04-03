@@ -1,11 +1,11 @@
 ﻿using System.Threading;
-using Xunit;
+using NUnit.Framework;
 
 namespace Manisero.PerformanceMonitor.Tests
 {
 	public class MeasurementTests
 	{
-		[Fact]
+		[Test]
 		public void started_task_is_monitored()
 		{
 			// Arrange
@@ -18,10 +18,10 @@ namespace Manisero.PerformanceMonitor.Tests
 
 			// Assert
 			var results = monitor.GetResults();
-			Assert.InRange(results[task].Ticks, 1, long.MaxValue);
+			Assert.Greater(results[task].Ticks, 0);
 		}
 
-		[Fact]
+		[Test]
 		public void result_for_started_task_is_correct()
 		{
 			// Arrange
@@ -34,10 +34,10 @@ namespace Manisero.PerformanceMonitor.Tests
 
 			// Assert
 			var results = monitor.GetResults();
-			Assert.InRange(results[task].Milliseconds, 18, 22);
+			Assert.That(results[task].Milliseconds, Is.InRange(18, 22));
 		}
 
-		[Fact]
+		[Test]
 		public void result_for_stopped_task_is_correct()
 		{
 			// Arrange
@@ -52,10 +52,10 @@ namespace Manisero.PerformanceMonitor.Tests
 
 			// Assert
 			var results = monitor.GetResults();
-			Assert.InRange(results[task].Milliseconds, 18, 22);
+			Assert.That(results[task].Milliseconds, Is.InRange(18, 22));
 		}
 
-		[Fact]
+		[Test]
 		public void result_for_task_started_twice_is_correct()
 		{
 			// Arrange
@@ -76,7 +76,7 @@ namespace Manisero.PerformanceMonitor.Tests
 
 			// Assert
 			var results = monitor.GetResults();
-			Assert.InRange(results[task].Milliseconds, 38, 42);
+			Assert.That(results[task].Milliseconds, Is.InRange(38, 42));
 		}
 	}
 }
