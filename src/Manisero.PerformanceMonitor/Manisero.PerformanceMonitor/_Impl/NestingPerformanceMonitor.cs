@@ -10,6 +10,7 @@ namespace Manisero.PerformanceMonitor._Impl
 		private class TaskData
 		{
 			public TTask Task { get; set; }
+			public TaskData Parent { get; set; }
 			public Stopwatch Stopwatch { get; set; }
 			public IDictionary<TTask, TaskData> Subtasks { get; set; }
 		}
@@ -21,7 +22,7 @@ namespace Manisero.PerformanceMonitor._Impl
 		{
 			if (_currentTask == null)
 			{
-				StartTask(task, _tasks);
+				StartTaskOrSubtask(task, _tasks);
 			}
 			else if (_currentTask.Task.Equals(task))
 			{
@@ -29,11 +30,11 @@ namespace Manisero.PerformanceMonitor._Impl
 			}
 			else
 			{
-				StartTask(task, _currentTask.Subtasks);
+				StartTaskOrSubtask(task, _currentTask.Subtasks);
 			}
 		}
 
-		private void StartTask(TTask task, IDictionary<TTask, TaskData> tasks)
+		private void StartTaskOrSubtask(TTask task, IDictionary<TTask, TaskData> tasks)
 		{
 			TaskData taskData;
 
@@ -42,6 +43,7 @@ namespace Manisero.PerformanceMonitor._Impl
 				taskData = new TaskData
 				{
 					Task = task,
+					Parent = _currentTask,
 					Stopwatch = new Stopwatch(),
 					Subtasks = new Dictionary<TTask, TaskData>()
 				};
@@ -55,7 +57,48 @@ namespace Manisero.PerformanceMonitor._Impl
 
 		public void StopTask(TTask task)
 		{
-			throw new NotImplementedException();
+			if (_currentTask == null)
+			{
+				throw new InvalidOperationException(string.Format("Task '{0}' is not started.", task));
+			}
+			else if (_currentTask.Task.Equals(task))
+			{
+				StopTaskWithSubtasks(_currentTask);
+				_currentTask = _currentTask.Parent;
+			}
+			else
+			{
+				StopParentTask(task, _currentTask.Parent);
+			}
+		}
+
+		private void StopTaskWithSubtasks(TaskData taskData)
+		{
+			foreach (var subtask in taskData.Subtasks)
+			{
+				StopTaskWithSubtasks(subtask.Value);
+			}
+
+			taskData.Stopwatch.Stop();
+		}
+
+		private void StopParentTask(TTask task, TaskData parentTaskData)
+		{
+			if (parentTaskData == null)
+			{
+				throw new InvalidOperationException(string.Format("Task '{0}' is not started.", task));
+			}
+
+			if (parentTaskData.Task.Equals(task))
+			{
+				StopTaskWithSubtasks(parentTaskData);
+
+				_currentTask = parentTaskData.Parent;
+			}
+			else
+			{
+				StopParentTask(task, parentTaskData);
+			}
 		}
 
 		public TasksDurations<TTask> GetResult()
