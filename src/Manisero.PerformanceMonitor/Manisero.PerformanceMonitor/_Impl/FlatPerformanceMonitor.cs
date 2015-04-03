@@ -29,13 +29,11 @@ namespace Manisero.PerformanceMonitor._Impl
 
 		public TasksDurations<TTask> GetResult()
 		{
-			var taskInfos = _tasks.ToDictionary(x => x.Key,
-												x => new TaskInfo<TTask>
-													{
-														Duration = x.Value.Elapsed
-													});
-
-			return new TasksDurations<TTask>(taskInfos);
+			return _tasks.ToTasksDurations(x => x.Key,
+										   x => new TaskInfo<TTask>
+											   {
+												   Duration = x.Value.Elapsed
+											   });
 		}
 
 		public string GetReport(bool includeHeader = true, Func<TTask, string> taskNameFormatter = null, Func<TimeSpan, string> taskDurationFormatter = null)

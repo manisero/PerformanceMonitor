@@ -60,9 +60,7 @@ namespace Manisero.PerformanceMonitor._Impl
 
 		public TasksDurations<TTask> GetResult()
 		{
-			var taskInfos = _tasks.Values.ToDictionary(x => x.Task, MapToTaskInfo);
-
-			return new TasksDurations<TTask>(taskInfos);
+			return _tasks.Values.ToTasksDurations(x => x.Task, MapToTaskInfo);
 		}
 
 		private TaskInfo<TTask> MapToTaskInfo(TaskData taskData)
@@ -71,8 +69,7 @@ namespace Manisero.PerformanceMonitor._Impl
 				{
 					Duration = taskData.Stopwatch.Elapsed,
 					SubtasksDurations = taskData.Subtasks != null
-											? new TasksDurations<TTask>(taskData.Subtasks.ToDictionary(x => x.Key,
-																									   x => MapToTaskInfo(x.Value)))
+											? taskData.Subtasks.ToTasksDurations(x => x.Key, x => MapToTaskInfo(x.Value))
 											: null
 				};
 		}
