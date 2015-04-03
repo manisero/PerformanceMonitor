@@ -42,10 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MeasurementTests.cs" />
-    <Compile Include="ApiTests.cs" />
+    <Compile Include="FlatPerformanceMonitor\ApiTests.cs" />
+    <Compile Include="FlatPerformanceMonitor\MeasurementTests.cs" />
+    <Compile Include="FlatPerformanceMonitor\ReportFormattingTests.cs" />
+    <Compile Include="NestedPerformanceMonitor\NestedPerformanceMonitorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReportFormattingTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Manisero.PerformanceMonitor\Manisero.PerformanceMonitor.csproj">

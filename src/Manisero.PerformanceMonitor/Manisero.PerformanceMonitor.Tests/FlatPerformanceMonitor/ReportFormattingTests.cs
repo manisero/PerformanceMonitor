@@ -1,15 +1,16 @@
-﻿using System;
+using System;
 using System.Threading;
+using Manisero.PerformanceMonitor._Impl;
 using NUnit.Framework;
 
-namespace Manisero.PerformanceMonitor.Tests
+namespace Manisero.PerformanceMonitor.Tests.FlatPerformanceMonitor
 {
 	public class ReportFormattingTests
 	{
-		private PerformanceMonitor<string> Execute()
+		private FlatPerformanceMonitor<string> Execute()
 		{
 			// Arrange
-			var monitor = new PerformanceMonitor<string>();
+			var monitor = new FlatPerformanceMonitor<string>();
 			var task1 = "task1";
 			var task2 = "task2";
 

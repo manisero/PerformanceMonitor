@@ -1,6 +1,7 @@
-﻿using NUnit.Framework;
+using Manisero.PerformanceMonitor._Impl;
+using NUnit.Framework;
 
-namespace Manisero.PerformanceMonitor.Tests
+namespace Manisero.PerformanceMonitor.Tests.FlatPerformanceMonitor
 {
 	public class ApiTests
     {
@@ -8,7 +9,7 @@ namespace Manisero.PerformanceMonitor.Tests
 		public void results_contain_started_task()
 		{
 			// Arrange
-			var monitor = new PerformanceMonitor<int>();
+			var monitor = new FlatPerformanceMonitor<int>();
 			var task = 1;
 
 			// Act
@@ -24,7 +25,7 @@ namespace Manisero.PerformanceMonitor.Tests
 		public void results_contain_started_tasks()
 		{
 			// Arrange
-			var monitor = new PerformanceMonitor<int>();
+			var monitor = new FlatPerformanceMonitor<int>();
 			var tasks = new[] { 1, 2, 3 };
 
 			// Act
@@ -48,7 +49,7 @@ namespace Manisero.PerformanceMonitor.Tests
 		public void can_start_same_task_twice()
 		{
 			// Arrange
-			var monitor = new PerformanceMonitor<int>();
+			var monitor = new FlatPerformanceMonitor<int>();
 			var task = 1;
 
 			// Act
@@ -62,7 +63,7 @@ namespace Manisero.PerformanceMonitor.Tests
 		public void stopping_never_started_task_fails()
 		{
 			// Arrange
-			var monitor = new PerformanceMonitor<int>();
+			var monitor = new FlatPerformanceMonitor<int>();
 			var task = 1;
 
 			// Assert
@@ -73,7 +74,7 @@ namespace Manisero.PerformanceMonitor.Tests
 		public void stopping_stopped_task_does_not_fail()
 		{
 			// Arrange
-			var monitor = new PerformanceMonitor<int>();
+			var monitor = new FlatPerformanceMonitor<int>();
 			var task = 1;
 
 			// Act

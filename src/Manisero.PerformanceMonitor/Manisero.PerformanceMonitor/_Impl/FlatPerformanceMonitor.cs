@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Manisero.PerformanceMonitor
+namespace Manisero.PerformanceMonitor._Impl
 {
-    public class PerformanceMonitor<TTask>
-    {
+	public class FlatPerformanceMonitor<TTask> : IPerformanceMonitor<TTask>
+	{
 	    private readonly IDictionary<TTask, Stopwatch> _tasks = new Dictionary<TTask, Stopwatch>();
 
 		public void StartTask(TTask task)
