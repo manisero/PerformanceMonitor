@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 
 namespace Manisero.PerformanceMonitor._Impl
 {
@@ -59,32 +58,6 @@ namespace Manisero.PerformanceMonitor._Impl
 											   {
 												   Duration = x.Value.Elapsed
 											   });
-		}
-
-		public string GetReport(bool includeHeader = true, Func<TTask, string> taskNameFormatter = null, Func<TimeSpan, string> taskDurationFormatter = null)
-		{
-			if (taskNameFormatter == null)
-			{
-				taskNameFormatter = x => x.ToString();
-			}
-
-			if (taskDurationFormatter == null)
-			{
-				taskDurationFormatter = x => x.TotalMilliseconds.ToString();
-			}
-
-			var report = GetResult().Select(x => string.Format("{0}: {1}",
-																taskNameFormatter(x.Key),
-																taskDurationFormatter(x.Value.Duration)))
-									 .ToList();
-
-			if (includeHeader)
-			{
-				var header = typeof(TTask).Name + " performance report:";
-				report.Insert(0, header);
-			}
-
-			return string.Join(Environment.NewLine, report);
 		}
     }
 }

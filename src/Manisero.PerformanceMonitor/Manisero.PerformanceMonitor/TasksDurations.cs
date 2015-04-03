@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Manisero.PerformanceMonitor.Util;
 
 namespace Manisero.PerformanceMonitor
 {
@@ -26,6 +27,11 @@ namespace Manisero.PerformanceMonitor
 		public static TasksDurations<TTask> ToTasksDurations<TSource, TTask>(this IEnumerable<TSource> source, Func<TSource, TTask> keySelector, Func<TSource, TaskDuration<TTask>> elementSelector)
 		{
 			return source.ToDictionary(keySelector, elementSelector).ToTasksDurations();
+		}
+
+		public static string FormatReport<TTask>(this TasksDurations<TTask> tasksDurations, bool includeHeader = true, Func<TTask, string> taskNameFormatter = null, Func<TimeSpan, string> taskDurationFormatter = null)
+		{
+			return ReportFormatter.FormatReport(tasksDurations, includeHeader, taskNameFormatter, taskDurationFormatter);
 		}
 	}
 }

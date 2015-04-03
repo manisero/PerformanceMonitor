@@ -76,7 +76,7 @@ namespace Manisero.PerformanceMonitor.Tests.NestingPerformanceMonitor
 			var monitor = Execute();
 
 			// Assert
-			var report = monitor.GetReport();
+			var report = monitor.GetResult().FormatReport();
 			Console.Write(report);
 		}
 
@@ -86,7 +86,7 @@ namespace Manisero.PerformanceMonitor.Tests.NestingPerformanceMonitor
 			var monitor = Execute();
 
 			// Assert
-			var report = monitor.GetReport(false);
+			var report = monitor.GetResult().FormatReport(false);
 			Console.Write(report);
 		}
 
@@ -96,7 +96,7 @@ namespace Manisero.PerformanceMonitor.Tests.NestingPerformanceMonitor
 			var monitor = Execute();
 
 			// Assert
-			var report = monitor.GetReport(taskNameFormatter: x => x.ToUpper());
+			var report = monitor.GetResult().FormatReport(taskNameFormatter: x => x.ToUpper());
 			Console.Write(report);
 		}
 
@@ -106,7 +106,7 @@ namespace Manisero.PerformanceMonitor.Tests.NestingPerformanceMonitor
 			var monitor = Execute();
 
 			// Assert
-			var report = monitor.GetReport(taskDurationFormatter: x => x.ToString());
+			var report = monitor.GetResult().FormatReport(taskDurationFormatter: x => x.ToString());
 			Console.Write(report);
 		}
 	}
