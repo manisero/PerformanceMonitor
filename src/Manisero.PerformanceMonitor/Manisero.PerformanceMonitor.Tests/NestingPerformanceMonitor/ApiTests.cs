@@ -36,8 +36,23 @@ namespace Manisero.PerformanceMonitor.Tests.NestingPerformanceMonitor
 
 			// Assert
 			var subtasks = result[task].SubtasksDurations;
+			Assert.NotNull(subtasks);
 			Assert.AreEqual(1, subtasks.Count);
 			Assert.True(subtasks.ContainsKey(subtask));
+		}
+
+		[Test]
+		public void can_start_same_task_twice()
+		{
+			// Arrange
+			var monitor = new NestingPerformanceMonitor<int>();
+			var task = 1;
+
+			// Act
+			monitor.StartTask(task);
+
+			// Assert
+			monitor.StartTask(task);
 		}
 	}
 }
