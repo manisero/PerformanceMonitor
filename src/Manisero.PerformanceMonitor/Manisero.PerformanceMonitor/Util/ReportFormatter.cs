@@ -15,7 +15,7 @@ namespace Manisero.PerformanceMonitor.Util
 
 			if (taskDurationFormatter == null)
 			{
-				taskDurationFormatter = x => x.TotalMilliseconds.ToString();
+				taskDurationFormatter = x => x.TotalMilliseconds.ToString() + " ms";
 			}
 
 			var report = GetSubReport(tasksDurations, 0, taskNameFormatter, taskDurationFormatter).ToList();
