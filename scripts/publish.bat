@@ -1,5 +1,7 @@
-SET csprojPath=..\src\Manisero.PerformanceMonitor\Manisero.PerformanceMonitor\Manisero.PerformanceMonitor.csproj
-SET packageName=Manisero.PerformanceMonitor
+set csprojPath=..\src\Manisero.PerformanceMonitor\Manisero.PerformanceMonitor\Manisero.PerformanceMonitor.csproj
+set packageName=Manisero.PerformanceMonitor
+
+echo Publishing %packageName% package
 
 call rebuild.bat %csprojPath%
 call nuget_pack.bat %csprojPath%
