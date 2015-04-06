@@ -3,7 +3,7 @@ using Manisero.PerformanceMonitor.Monitors;
 
 namespace Manisero.PerformanceMonitor
 {
-	public static class PerformanceMonitor<TTask>
+	public class PerformanceMonitor<TTask>
 	{
 		public static IPerformanceMonitor<TTask> Current { get; set; }
 
