@@ -5,7 +5,7 @@ namespace Manisero.PerformanceMonitor
 {
 	public class PerformanceMonitor<TTask>
 	{
-		public static IPerformanceMonitor<TTask> Current { get; set; }
+		private static IPerformanceMonitor<TTask> _current;
 
 		static PerformanceMonitor()
 		{
@@ -15,7 +15,7 @@ namespace Manisero.PerformanceMonitor
 		public static void SetCurrentMonitor<TMonitor>()
 			where TMonitor : IPerformanceMonitor<TTask>
 		{
-			Current = Activator.CreateInstance<TMonitor>();
+			_current = Activator.CreateInstance<TMonitor>();
 		}
 
 		public static void SetCurrentMonitor(BuiltInMonitorType monitorType)
@@ -32,6 +32,26 @@ namespace Manisero.PerformanceMonitor
 			{
 				throw new NotSupportedException("Not supported monitor type.");
 			}
+		}
+
+		public static void StartTask(TTask task)
+		{
+			_current.StartTask(task);
+		}
+
+		public static void StopCurrentTask()
+		{
+			_current.StopCurrentTask();
+		}
+
+		public static void StopTask(TTask task)
+		{
+			_current.StopTask(task);
+		}
+
+		public static TasksDurations<TTask> GetResult()
+		{
+			return _current.GetResult();
 		}
 	}
 }
